@@ -1,0 +1,36 @@
+{
+  "name": "autoflow-ai-server",
+  "version": "1.0.0",
+  "description": "AutoFlow AI - Full Stack Automation Backend with OpenAI, JWT, and MongoDB",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "mern",
+    "automation",
+    "openai",
+    "jwt",
+    "mongodb",
+    "n8n",
+    "docker"
+  ],
+  "author": "Ufuoma Ogedegbe",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0",
+    "openai": "^4.0.0",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

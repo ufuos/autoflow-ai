@@ -1,0 +1,44 @@
+services:
+
+  server:
+    build: ./server
+    container_name: autoflow-server
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  client:
+    build: ./client
+    container_name: autoflow-client
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+
+  mongo:
+    image: mongo:6
+    container_name: autoflow-mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+
+  n8n:
+    image: n8nio/n8n
+    container_name: autoflow-n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+    volumes:
+      - ./n8n/workflows:/home/node/.n8n
+
+volumes:
+  mongo_data:

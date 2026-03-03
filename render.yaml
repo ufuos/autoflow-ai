@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: autoflow-server
+    env: docker
+    plan: free
+    dockerfilePath: ./server/Dockerfile
+
+  - type: web
+    name: autoflow-client
+    env: docker
+    plan: free
+    dockerfilePath: ./client/Dockerfile
+
+  - type: web
+    name: autoflow-n8n
+    env: docker
+    plan: free
+    image: n8nio/n8n
