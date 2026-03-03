@@ -4,15 +4,33 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./server/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        fromDatabase:
+          name: autoflow-mongo
+          property: connectionString
 
   - type: web
     name: autoflow-client
     env: docker
     plan: free
     dockerfilePath: ./client/Dockerfile
+    autoDeploy: true
 
   - type: web
     name: autoflow-n8n
     env: docker
     plan: free
-    image: n8nio/n8n
+    dockerfilePath: ./n8n/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: N8N_PORT
+        value: 5678
+
+databases:
+  - name: autoflow-mongo
+    databaseName: autoflow
+    plan: free
